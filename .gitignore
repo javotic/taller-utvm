@@ -1,0 +1,33 @@
+# --- OS Files ---
+.DS_Store
+Thumbs.db
+
+# --- Database (CRUCIAL) ---
+# No queremos subir los binarios de la base de datos a GitHub
+postgres_data/
+
+# --- Backend (Java/Maven) ---
+backend/target/
+backend/*.jar
+backend/*.war
+backend/.mvn/
+backend/.classpath
+backend/.project
+backend/.settings/
+backend/bin/
+
+# --- Frontend (Node/Angular) ---
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+frontend/.cache/
+frontend/npm-debug.log*
+frontend/yarn-error.log*
+frontend/.vscode/
+
+# --- IDEs & Docker ---
+.idea/
+*.iml
+*.iws
+.vscode/
+.docker/

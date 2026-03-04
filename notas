@@ -1,0 +1,15 @@
+Construir la imagen
+docker build -t img-dblocal .
+
+Ejecutar contenedor 
+docker run -d \
+  --name servidor-postgres \
+  -p 5432:5432 \
+  -v volumen_local:/var/lib/postgresql/data \
+  img-dblocal
+
+Ejecutar compose (agregar -d para deattached)
+docker-compose up --build
+
+Detener y eliminar compose 
+docker-compose down

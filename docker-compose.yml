@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: taller_db
+    restart: always
+    environment:
+      POSTGRES_DB: mi_negocio_db
+      POSTGRES_USER: admin_db
+      POSTGRES_PASSWORD: password_seguro
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build: 
+      context: ./backend
+    container_name: taller_backend
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/mi_negocio_db
+      - SPRING_DATASOURCE_USERNAME=admin_db
+      - SPRING_DATASOURCE_PASSWORD=password_seguro
+
+  frontend:
+    build: 
+      context: ./frontend 
+    container_name: taller_frontend
+    restart: always
+    ports:
+      - "80:80" # Puedes exponerlo en el puerto 80 para simular producción
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
